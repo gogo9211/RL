@@ -28,6 +28,9 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{56c42a64-66ea-4f5a-b22e-fa6e6bdf9e17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\unreal_engine\hooks">
+      <UniqueIdentifier>{beb58cf0-91bc-4318-8c98-f029b717c7ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -38,6 +41,12 @@
     </ClCompile>
     <ClCompile Include="utils\utils.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="unreal_engine\hooks\hooks.cpp">
+      <Filter>Source Files\unreal_engine\hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="unreal_engine\structs\structs.cpp">
+      <Filter>Source Files\unreal_engine\structs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="utils\utils.hpp">
       <Filter>Source Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="unreal_engine\hooks\hooks.hpp">
+      <Filter>Source Files\unreal_engine\hooks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

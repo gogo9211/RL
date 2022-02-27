@@ -17,7 +17,7 @@ int d_main()
 
 	SetConsoleTitleA("RL");
 
-	rl::unreal_engine::engine::iterate_actors();
+	rl::unreal_engine::engine::iterate_objects();
 
 	return 1;
 }

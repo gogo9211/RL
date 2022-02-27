@@ -159,11 +159,14 @@
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="unreal_engine\engine\engine.cpp" />
+    <ClCompile Include="unreal_engine\hooks\hooks.cpp" />
+    <ClCompile Include="unreal_engine\structs\structs.cpp" />
     <ClCompile Include="utils\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addresses\addresses.hpp" />
     <ClInclude Include="unreal_engine\engine\engine.hpp" />
+    <ClInclude Include="unreal_engine\hooks\hooks.hpp" />
     <ClInclude Include="unreal_engine\structs\structs.hpp" />
     <ClInclude Include="utils\utils.hpp" />
   </ItemGroup>
