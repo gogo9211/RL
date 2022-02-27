@@ -1,0 +1,21 @@
+#pragma once
+#include <Windows.h>
+#include <cstdint>
+
+namespace rl::addresses
+{
+	const auto base = reinterpret_cast<std::uintptr_t>(GetModuleHandleA(nullptr));
+		
+	const std::uint64_t names = base + 0x21FB800;
+	const std::uint64_t objects = base + 0x21FB848;
+	const std::uint64_t world = base + 0x220F7E8;
+
+	const std::uint64_t ball_vtable = base + 0x1BBB1A0;
+	const std::uint64_t pickup_vtable = base + 0x1BA8530;
+
+	//Offsets of World
+	constexpr std::uint16_t persistent_level = 0x98;
+
+	//Offsets of PersistentLevel
+	constexpr std::uint16_t actors = 0x60;
+}
