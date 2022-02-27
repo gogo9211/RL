@@ -20,7 +20,7 @@ rl::unreal_engine::structs::uobject* rl::unreal_engine::structs::objects_array::
 			continue;
 
 		const auto object_name = object->get_object_name();
-		const auto outer_object_name = object->outer->get_object_name();
+		const auto outer_object_name = object->get_outer()->get_object_name();
 
 		if (std::strstr(object_name.c_str(), name) != 0 && std::strstr(outer_object_name.c_str(), outer_name) != 0)
 			return object;

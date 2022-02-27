@@ -8,7 +8,7 @@ namespace rl::unreal_engine::structs
 {
 	enum { NAME_SIZE = 1024 / 4 };
 
-	struct uobject
+	class uobject
 	{
 		void* vtable;
 
@@ -22,7 +22,10 @@ namespace rl::unreal_engine::structs
 
 		uobject* inner;
 
+	public:
 		std::string get_object_name(bool class_name = false);
+
+		uobject* get_outer() { return outer; }
 
 		std::uintptr_t get() { return reinterpret_cast<std::uintptr_t>(this); }
 	};
@@ -33,7 +36,7 @@ namespace rl::unreal_engine::structs
 	protected:
 		type* data;
 
-	public:
+	private:
 		std::uint32_t current_size;
 
 		std::uint32_t max_size;
