@@ -9,6 +9,11 @@ namespace rl::unreal_engine::structs
 {
 	enum { NAME_SIZE = 1024 / 4 };
 
+	struct vector
+	{
+		float x, y, z;
+	};
+
 	class uobject
 	{
 		void* vtable;
@@ -18,10 +23,6 @@ namespace rl::unreal_engine::structs
 		uobject* outer;
 
 		std::uint32_t name_index;
-
-		std::uint32_t number;
-
-		uobject* inner;
 
 	public:
 		std::string get_object_name(bool class_name = false);
@@ -86,12 +87,12 @@ namespace rl::unreal_engine::structs
 		};
 	};
 
+	using names_array = tarray<fname_entry*>;
+
 	struct objects_array : tarray<uobject*>
 	{
 		rl::unreal_engine::structs::uobject* get_object_from_name(const char* name, const char* outer_name);
 	};
-
-	using names_array = tarray<fname_entry*>;
 
 	struct world : uobject
 	{
@@ -109,5 +110,17 @@ namespace rl::unreal_engine::structs
 		void draw_text(const rl::unreal_engine::structs::fstring& text, bool cr, float x, float y, void* unk);
 
 		void set_draw_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+
+		rl::unreal_engine::structs::vector project(rl::unreal_engine::structs::vector location);
+	};
+
+	struct aactor : uobject
+	{
+		rl::unreal_engine::structs::vector get_pos() { return *reinterpret_cast<rl::unreal_engine::structs::vector*>(this->get() + rl::addresses::location); }
+	};
+
+	struct vehicle_pickup : aactor
+	{
+
 	};
 }

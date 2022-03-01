@@ -8,18 +8,12 @@ namespace rl::unreal_engine::arguments
 {
 	struct draw_box
 	{
-		float width;
-
-		float heigth;
+		float width, heigth;
 	};
 
 	struct set_position
 	{
-		float x;
-
-		float y;
-
-		float z;
+		float x, y, z;
 	};
 
 	struct draw_text
@@ -28,21 +22,20 @@ namespace rl::unreal_engine::arguments
 
 		bool cr;
 
-		float x;
-
-		float y;
+		float x, y;
 
 		void* unk;
 	};
 
 	struct set_draw_color
 	{
-		unsigned char r;
+		unsigned char r, g, b, a;
+	};
 
-		unsigned char g;
+	struct project
+	{
+		rl::unreal_engine::structs::vector in;
 
-		unsigned char b;
-
-		unsigned char a;
+		rl::unreal_engine::structs::vector out;
 	};
 }

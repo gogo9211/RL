@@ -81,3 +81,16 @@ void rl::unreal_engine::structs::canvas::set_draw_color(unsigned char r, unsigne
 
 	process_event(this, set_draw_color, &args);
 }
+
+rl::unreal_engine::structs::vector rl::unreal_engine::structs::canvas::project(rl::unreal_engine::structs::vector location)
+{
+	auto objects = *reinterpret_cast<rl::unreal_engine::structs::objects_array*>(rl::addresses::objects);
+
+	static auto project = objects.get_object_from_name("Project", "Canvas");
+
+	rl::unreal_engine::arguments::project args{ location, {} };
+
+	process_event(this, project, &args);
+
+	return args.out;
+}
