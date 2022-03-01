@@ -12,9 +12,8 @@ namespace rl::addresses
 
 	const std::uint64_t process_event = base + 0x30D540;
 
-	const std::uint64_t hud_vtable = base + 0x18A0A70;
 	const std::uint64_t pickup_vtable = base + 0x1BA8530;
-	const std::uint64_t viewport_vtable = base + 0x1BA19D8;
+	const std::uint64_t ball_vtable = base + 0x1BBB1A0;
 
 	//Offsets of World
 	constexpr std::uint16_t persistent_level = 0x98;

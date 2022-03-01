@@ -58,7 +58,7 @@ void post_render_hook(rl::unreal_engine::structs::canvas* canvas)
 
 std::uintptr_t __fastcall process_event_hook(rl::unreal_engine::structs::uobject* object, rl::unreal_engine::structs::uobject* function, void* args)
 {
-	if (*reinterpret_cast<std::uintptr_t*>(object->get()) == rl::addresses::viewport_vtable && function == post_render)
+	if (function == post_render)
 		post_render_hook(*reinterpret_cast<rl::unreal_engine::structs::canvas**>(args));
 
 	if (function == pre_render)
