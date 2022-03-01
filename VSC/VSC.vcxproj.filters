@@ -31,6 +31,9 @@
     <Filter Include="Source Files\unreal_engine\hooks">
       <UniqueIdentifier>{beb58cf0-91bc-4318-8c98-f029b717c7ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\unreal_engine\function_arguments">
+      <UniqueIdentifier>{32bfe836-bac5-402c-834b-d4f90fcad7ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="unreal_engine\hooks\hooks.hpp">
       <Filter>Source Files\unreal_engine\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="unreal_engine\function_arguments\function_arguments.hpp">
+      <Filter>Source Files\unreal_engine\function_arguments</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

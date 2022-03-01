@@ -2,6 +2,7 @@
 #include <thread>
 
 #include "unreal_engine/engine/engine.hpp"
+#include "unreal_engine/hooks/hooks.hpp"
 
 int d_main()
 {
@@ -18,6 +19,7 @@ int d_main()
 	SetConsoleTitleA("RL");
 
 	rl::unreal_engine::engine::iterate_objects();
+	rl::unreal_engine::hooks::init();
 
 	return 1;
 }

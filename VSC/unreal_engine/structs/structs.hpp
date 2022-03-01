@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <cstdint>
+
 #include "../../utils/utils.hpp"
 #include "../../addresses/addresses.hpp"
 
@@ -30,9 +31,13 @@ namespace rl::unreal_engine::structs
 		std::uintptr_t get() { return reinterpret_cast<std::uintptr_t>(this); }
 	};
 
+	using process_event_t = std::uintptr_t(__fastcall*)(rl::unreal_engine::structs::uobject* object, rl::unreal_engine::structs::uobject* function, void* args);
+
 	template<class type>
 	class tarray
 	{
+		friend struct fstring;
+
 	protected:
 		type* data;
 
@@ -70,17 +75,39 @@ namespace rl::unreal_engine::structs
 		}
 	};
 
-	struct objects_array : public tarray<uobject*>
+	struct fstring : tarray<wchar_t>
+	{
+		fstring(const wchar_t* str)
+		{
+			current_size = std::wcslen(str) + 1;
+			max_size = current_size;
+
+			data = const_cast<wchar_t*>(str);
+		};
+	};
+
+	struct objects_array : tarray<uobject*>
 	{
 		rl::unreal_engine::structs::uobject* get_object_from_name(const char* name, const char* outer_name);
 	};
 
 	using names_array = tarray<fname_entry*>;
 
-	struct world : public uobject
+	struct world : uobject
 	{
 		rl::unreal_engine::structs::uobject* get_level() { return *reinterpret_cast<uobject**>(this->get() + rl::addresses::persistent_level); }
 
 		rl::unreal_engine::structs::objects_array get_actors() { return *reinterpret_cast<rl::unreal_engine::structs::objects_array*>(get_level()->get() + rl::addresses::actors); }
+	};
+
+	struct canvas : uobject
+	{
+		void draw_box(float width, float heigth);
+
+		void set_pos(float x, float y, float z = 1.f);
+
+		void draw_text(const rl::unreal_engine::structs::fstring& text, bool cr, float x, float y, void* unk);
+
+		void set_draw_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 	};
 }
