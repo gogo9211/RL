@@ -121,6 +121,6 @@ namespace rl::unreal_engine::structs
 
 	struct vehicle_pickup : aactor
 	{
-
+		rl::unreal_engine::structs::uobject* get_fx_actor() { return *reinterpret_cast<uobject**>(this->get() + rl::addresses::fx_actor); }
 	};
 }

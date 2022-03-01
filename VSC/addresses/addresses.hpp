@@ -23,4 +23,7 @@ namespace rl::addresses
 
 	//Offsets of AActor
 	constexpr std::uint16_t location = 0x90;
+
+	//Offsets of VehiclePickup
+	constexpr std::uint16_t fx_actor = 0x278;
 }

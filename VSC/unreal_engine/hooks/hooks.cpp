@@ -34,7 +34,7 @@ void pre_render_hook(rl::unreal_engine::structs::canvas* canvas)
 
 			const auto screen_pos = canvas->project(actor->get_pos());
 
-			if (screen_pos.z == 0)
+			if (screen_pos.z == 0 || !actor->get_fx_actor())
 				continue;
 
 			boost_positions.push_back(screen_pos);
