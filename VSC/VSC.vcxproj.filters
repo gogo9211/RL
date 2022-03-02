@@ -34,6 +34,12 @@
     <Filter Include="Source Files\unreal_engine\function_arguments">
       <UniqueIdentifier>{32bfe836-bac5-402c-834b-d4f90fcad7ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\features">
+      <UniqueIdentifier>{4b2a7478-f05d-4868-b6ae-4b0711362bac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\features\visuals">
+      <UniqueIdentifier>{53ed2128-b6fd-45cb-a1d0-f700622b9a86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -50,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="unreal_engine\structs\structs.cpp">
       <Filter>Source Files\unreal_engine\structs</Filter>
+    </ClCompile>
+    <ClCompile Include="features\visuals\visuals.cpp">
+      <Filter>Source Files\features\visuals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="unreal_engine\function_arguments\function_arguments.hpp">
       <Filter>Source Files\unreal_engine\function_arguments</Filter>
+    </ClInclude>
+    <ClInclude Include="features\visuals\visuals.hpp">
+      <Filter>Source Files\features\visuals</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

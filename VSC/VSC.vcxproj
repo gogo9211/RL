@@ -158,6 +158,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="features\visuals\visuals.cpp" />
     <ClCompile Include="unreal_engine\engine\engine.cpp" />
     <ClCompile Include="unreal_engine\hooks\hooks.cpp" />
     <ClCompile Include="unreal_engine\structs\structs.cpp" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addresses\addresses.hpp" />
+    <ClInclude Include="features\visuals\visuals.hpp" />
     <ClInclude Include="unreal_engine\engine\engine.hpp" />
     <ClInclude Include="unreal_engine\function_arguments\function_arguments.hpp" />
     <ClInclude Include="unreal_engine\hooks\hooks.hpp" />

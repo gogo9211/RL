@@ -128,6 +128,8 @@ namespace rl::unreal_engine::structs
 	struct aactor : uobject
 	{
 		rl::unreal_engine::structs::vector get_pos() { return *reinterpret_cast<rl::unreal_engine::structs::vector*>(this->get() + rl::addresses::location); }
+
+		rl::unreal_engine::structs::vector get_screen_pos(rl::unreal_engine::structs::canvas* canvas);
 	};
 
 	struct vehicle_pickup : aactor

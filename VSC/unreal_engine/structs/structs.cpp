@@ -126,3 +126,13 @@ bool rl::unreal_engine::structs::vehicle_pickup::is_picked_up()
 
 	return ret;
 }
+
+rl::unreal_engine::structs::vector rl::unreal_engine::structs::aactor::get_screen_pos(rl::unreal_engine::structs::canvas* canvas)
+{
+	const auto screen_pos = canvas->project(this->get_pos());
+
+	if (screen_pos.z == 0)
+		return {};
+
+	return screen_pos;
+}
