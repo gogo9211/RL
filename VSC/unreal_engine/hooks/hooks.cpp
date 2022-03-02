@@ -31,7 +31,9 @@ void pre_render_hook(rl::unreal_engine::structs::canvas* canvas)
 		if (!actor_obj)
 			continue;
 
-		if (*reinterpret_cast<std::uintptr_t*>(actor_obj->get()) == rl::addresses::pickup_vtable)
+		const auto actor_vtable = *reinterpret_cast<std::uintptr_t*>(actor_obj->get());
+
+		if (actor_vtable == rl::addresses::pickup_vtable)
 		{
 			const auto actor = static_cast<rl::unreal_engine::structs::vehicle_pickup*>(actor_obj);
 
@@ -43,7 +45,7 @@ void pre_render_hook(rl::unreal_engine::structs::canvas* canvas)
 			boost_positions.push_back(screen_pos);
 		}
 
-		if (*reinterpret_cast<std::uintptr_t*>(actor_obj->get()) == rl::addresses::ball_vtable)
+		if (actor_vtable == rl::addresses::ball_vtable)
 		{
 			const auto actor = static_cast<rl::unreal_engine::structs::aactor*>(actor_obj);
 

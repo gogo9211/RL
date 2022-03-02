@@ -18,7 +18,7 @@ namespace rl::unreal_engine::structs
 
 	struct color
 	{
-		unsigned char B, G, R, A;
+		unsigned char R, G, B, A;
 	};
 
 	class uobject
