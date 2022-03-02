@@ -94,3 +94,16 @@ rl::unreal_engine::structs::vector rl::unreal_engine::structs::canvas::project(r
 
 	return args.out;
 }
+
+bool rl::unreal_engine::structs::vehicle_pickup::is_picked_up()
+{
+	auto objects = *reinterpret_cast<rl::unreal_engine::structs::objects_array*>(rl::addresses::objects);
+
+	static auto is_picked_up = objects.get_object_from_name("IsPickedUp", "VehiclePickup_TA");
+
+	bool ret;
+
+	process_event(this, is_picked_up, &ret);
+
+	return ret;
+}

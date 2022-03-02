@@ -34,7 +34,7 @@ void pre_render_hook(rl::unreal_engine::structs::canvas* canvas)
 
 			const auto screen_pos = canvas->project(actor->get_pos());
 
-			if (screen_pos.z == 0 || !actor->get_fx_actor())
+			if (screen_pos.z == 0 || !actor->get_fx_actor() || actor->is_picked_up())
 				continue;
 
 			boost_positions.push_back(screen_pos);
@@ -51,7 +51,6 @@ void post_render_hook(rl::unreal_engine::structs::canvas* canvas)
 	for (const auto& pos : boost_positions)
 	{
 		canvas->set_pos(pos.x - 15, pos.y - 15);
-		canvas->set_draw_color(0, 255, 70, 255);
 		canvas->draw_box(30, 30);
 	}
 }
