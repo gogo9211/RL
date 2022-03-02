@@ -38,4 +38,11 @@ namespace rl::unreal_engine::arguments
 
 		rl::unreal_engine::structs::vector out;
 	};
+
+	struct draw_line
+	{
+		float x1, x2, y1, y2;
+
+		rl::unreal_engine::structs::color color;
+	};
 }

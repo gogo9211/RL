@@ -12,6 +12,13 @@ namespace rl::unreal_engine::structs
 	struct vector
 	{
 		float x, y, z;
+
+		bool is_null() { return x == 0 && y == 0 && z == 0; }
+	};
+
+	struct color
+	{
+		unsigned char B, G, R, A;
 	};
 
 	class uobject
@@ -103,6 +110,8 @@ namespace rl::unreal_engine::structs
 
 	struct canvas : uobject
 	{
+		std::pair<int, int> get_size();
+
 		void draw_box(float width, float heigth);
 
 		void set_pos(float x, float y, float z = 1.f);
@@ -110,6 +119,8 @@ namespace rl::unreal_engine::structs
 		void draw_text(const rl::unreal_engine::structs::fstring& text, bool cr, float x, float y, void* unk);
 
 		void set_draw_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+
+		void draw_line(float x1, float x2, float y1, float y2, const rl::unreal_engine::structs::color& color);
 
 		rl::unreal_engine::structs::vector project(rl::unreal_engine::structs::vector location);
 	};

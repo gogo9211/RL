@@ -26,4 +26,8 @@ namespace rl::addresses
 
 	//Offsets of VehiclePickup
 	constexpr std::uint16_t fx_actor = 0x278;
+
+	//Offsets of Canvas
+	constexpr std::uint16_t size_x = 0x90;
+	constexpr std::uint16_t size_y = 0x94;
 }

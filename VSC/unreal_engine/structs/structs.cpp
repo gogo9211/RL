@@ -38,6 +38,14 @@ rl::unreal_engine::structs::uobject* rl::unreal_engine::structs::objects_array::
 
 static rl::unreal_engine::structs::process_event_t process_event = reinterpret_cast<rl::unreal_engine::structs::process_event_t>(rl::addresses::process_event);
 
+std::pair<int, int> rl::unreal_engine::structs::canvas::get_size()
+{
+	const auto x = *reinterpret_cast<int*>(this->get() + rl::addresses::size_x);
+	const auto y = *reinterpret_cast<int*>(this->get() + rl::addresses::size_y);
+
+	return std::make_pair(x, y);
+}
+
 void rl::unreal_engine::structs::canvas::draw_box(float width, float heigth)
 {
 	auto objects = *reinterpret_cast<rl::unreal_engine::structs::objects_array*>(rl::addresses::objects);
@@ -69,6 +77,17 @@ void rl::unreal_engine::structs::canvas::draw_text(const rl::unreal_engine::stru
 	rl::unreal_engine::arguments::draw_text args{ text, cr, x, y, unk };
 
 	process_event(this, draw_text, &args);
+}
+
+void rl::unreal_engine::structs::canvas::draw_line(float x1, float x2, float y1, float y2, const rl::unreal_engine::structs::color& color)
+{
+	auto objects = *reinterpret_cast<rl::unreal_engine::structs::objects_array*>(rl::addresses::objects);
+
+	static auto draw_line = objects.get_object_from_name("Draw2DLine", "Canvas");
+
+	rl::unreal_engine::arguments::draw_line args{ x1, x2, y1, y2, color };
+
+	process_event(this, draw_line, &args);
 }
 
 void rl::unreal_engine::structs::canvas::set_draw_color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)

@@ -12,9 +12,12 @@ rl::unreal_engine::structs::uobject* pre_render = nullptr;
 rl::unreal_engine::structs::uobject* post_render = nullptr;
 
 std::vector<rl::unreal_engine::structs::vector> boost_positions;
+rl::unreal_engine::structs::vector ball_position;
 
 void pre_render_hook(rl::unreal_engine::structs::canvas* canvas)
 {
+	ball_position = { 0, 0, 0 };
+
 	boost_positions.clear();
 
 	const auto world = *reinterpret_cast<rl::unreal_engine::structs::world**>(rl::addresses::world);
@@ -39,11 +42,25 @@ void pre_render_hook(rl::unreal_engine::structs::canvas* canvas)
 
 			boost_positions.push_back(screen_pos);
 		}
+
+		if (*reinterpret_cast<std::uintptr_t*>(actor_obj->get()) == rl::addresses::ball_vtable)
+		{
+			const auto actor = static_cast<rl::unreal_engine::structs::aactor*>(actor_obj);
+
+			const auto screen_pos = canvas->project(actor->get_pos());
+
+			if (screen_pos.z == 0)
+				continue;
+
+			ball_position = screen_pos;
+		}
 	}
 }
 
 void post_render_hook(rl::unreal_engine::structs::canvas* canvas)
 {
+	const auto& [screen_x, screen_y] = canvas->get_size();
+
 	canvas->set_pos(15, 15);
 	canvas->set_draw_color(0, 255, 70, 255);
 	canvas->draw_text(L"gogo1000", false, 1.f, 1.f, nullptr);
@@ -53,6 +70,9 @@ void post_render_hook(rl::unreal_engine::structs::canvas* canvas)
 		canvas->set_pos(pos.x - 15, pos.y - 15);
 		canvas->draw_box(30, 30);
 	}
+
+	if (!ball_position.is_null())
+		canvas->draw_line(screen_x / 2, screen_y, ball_position.x, ball_position.y, { 0, 255, 70, 255 });
 }
 
 std::uintptr_t __fastcall process_event_hook(rl::unreal_engine::structs::uobject* object, rl::unreal_engine::structs::uobject* function, void* args)
