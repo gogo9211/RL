@@ -34,9 +34,7 @@ namespace rl::unreal_engine::arguments
 
 	struct project
 	{
-		rl::unreal_engine::structs::vector in;
-
-		rl::unreal_engine::structs::vector out;
+		rl::unreal_engine::structs::vector in, out;
 	};
 
 	struct draw_line
@@ -44,5 +42,21 @@ namespace rl::unreal_engine::arguments
 		float x1, x2, y1, y2;
 
 		rl::unreal_engine::structs::color color;
+	};
+
+	struct prediction_info
+	{
+		float time, atp;
+
+		rl::unreal_engine::structs::vector location, velocity, at, atv;
+
+		std::uint32_t unk;
+	};
+
+	struct predict_position
+	{
+		float time;
+
+		prediction_info info;
 	};
 }

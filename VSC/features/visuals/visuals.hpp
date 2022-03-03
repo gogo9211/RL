@@ -11,11 +11,11 @@ namespace rl::features::visuals
 	{
 		std::vector<rl::unreal_engine::structs::vector> boost_positions;
 
-		rl::unreal_engine::structs::vector ball_position;
+		std::pair<rl::unreal_engine::structs::vector, rl::unreal_engine::structs::vector> ball_position;
 
 		void clear()
 		{
-			ball_position = { 0, 0, 0 };
+			ball_position.first = ball_position.second = { 0, 0, 0 };
 
 			boost_positions.clear();
 		}

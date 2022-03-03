@@ -16,7 +16,7 @@ std::uintptr_t __fastcall process_event_hook(rl::unreal_engine::structs::uobject
 	if (function == pre_render)
 		rl::features::visuals::pre_render(*reinterpret_cast<rl::unreal_engine::structs::canvas**>(args));
 
-	if (function == post_render)
+	else if (function == post_render)
 		rl::features::visuals::draw_esp(*reinterpret_cast<rl::unreal_engine::structs::canvas**>(args));
 
 	return process_event(object, function, args);

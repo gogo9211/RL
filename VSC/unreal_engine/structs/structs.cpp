@@ -136,3 +136,16 @@ rl::unreal_engine::structs::vector rl::unreal_engine::structs::aactor::get_scree
 
 	return screen_pos;
 }
+
+rl::unreal_engine::structs::vector rl::unreal_engine::structs::ball::predict_position(float time)
+{
+	auto objects = *reinterpret_cast<rl::unreal_engine::structs::objects_array*>(rl::addresses::objects);
+
+	rl::unreal_engine::arguments::predict_position predict_infos = { time, {} };
+
+	static auto predict_position = objects.get_object_from_name("PredictPosition", "Ball_TA");
+
+	process_event(this, predict_position, &predict_infos);
+
+	return predict_infos.info.location;
+}

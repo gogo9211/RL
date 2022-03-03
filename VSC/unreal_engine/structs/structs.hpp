@@ -138,4 +138,9 @@ namespace rl::unreal_engine::structs
 
 		bool is_picked_up();
 	};
+
+	struct ball : aactor
+	{
+		rl::unreal_engine::structs::vector predict_position(float time);
+	};
 }

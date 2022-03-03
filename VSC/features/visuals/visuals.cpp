@@ -31,16 +31,18 @@ void rl::features::visuals::pre_render(rl::unreal_engine::structs::canvas* canva
 			visual_data.boost_positions.push_back(screen_pos);
 		}
 
-		if (actor_vtable == rl::addresses::ball_vtable)
+		else if (actor_vtable == rl::addresses::ball_vtable)
 		{
-			const auto actor = static_cast<rl::unreal_engine::structs::aactor*>(actor_obj);
+			const auto actor = static_cast<rl::unreal_engine::structs::ball*>(actor_obj);
+
+			const auto screen_pos_predicted = canvas->project(actor->predict_position(1.f));
 
 			auto screen_pos = actor->get_screen_pos(canvas);
 
-			if (screen_pos.is_null())
+			if (screen_pos_predicted.z == 0 || screen_pos.is_null())
 				continue;
 
-			visual_data.ball_position = screen_pos;
+			visual_data.ball_position = std::make_pair(screen_pos, screen_pos_predicted);
 		}
 	}
 }
@@ -59,6 +61,10 @@ void rl::features::visuals::draw_esp(rl::unreal_engine::structs::canvas* canvas)
 		canvas->draw_box(30, 30);
 	}
 
-	if (!visual_data.ball_position.is_null())
-		canvas->draw_line(screen_x / 2, screen_y, visual_data.ball_position.x, visual_data.ball_position.y, { 0, 255, 70, 255 });
+	if (!visual_data.ball_position.first.is_null() && !visual_data.ball_position.second.is_null())
+	{
+		canvas->draw_line(screen_x / 2, screen_y, visual_data.ball_position.first.x, visual_data.ball_position.first.y, { 0, 255, 70, 255 });
+		canvas->set_pos(visual_data.ball_position.second.x - 8, visual_data.ball_position.second.y - 8);
+		canvas->draw_box(16, 16);
+	}
 }
