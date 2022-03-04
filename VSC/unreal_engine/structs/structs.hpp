@@ -143,4 +143,9 @@ namespace rl::unreal_engine::structs
 	{
 		rl::unreal_engine::structs::vector predict_position(float time);
 	};
+
+	struct engine : uobject
+	{
+		rl::unreal_engine::structs::uobject* get_local_player() { return **reinterpret_cast<uobject***>(this->get() + rl::addresses::local_player); }
+	};
 }

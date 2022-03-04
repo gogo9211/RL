@@ -9,6 +9,7 @@ namespace rl::addresses
 	const std::uint64_t names = base + 0x21FB800;
 	const std::uint64_t objects = base + 0x21FB848;
 	const std::uint64_t world = base + 0x220F7E8;
+	const std::uint64_t engine = base + 0x220b340;
 
 	const std::uint64_t process_event = base + 0x30D540;
 
@@ -30,4 +31,13 @@ namespace rl::addresses
 	//Offsets of Canvas
 	constexpr std::uint16_t size_x = 0x90;
 	constexpr std::uint16_t size_y = 0x94;
+
+	//Offsets of Engine
+	constexpr std::uint16_t local_player = 0x760;
+
+	//Offsets of LocalPlayer
+	constexpr std::uint16_t player_controller = 0x78;
+
+	//Offsets of PlayerController
+	constexpr std::uint16_t pawn = 0x4A0;
 }
